@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Camera mainCamera;
     public EnemySpawnerScript enemySpawnerScript;
     // Start is called before the first frame update
     void Start()
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    private void CallWeaponChoseScreen()
     {
         
     }
