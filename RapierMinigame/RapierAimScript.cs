@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
-public class RapierAimScript : MonoBehaviour
+public class RapierAimScript : MonoBehaviour, IPointerClickHandler
 {
     [HideInInspector]
     public RapierMinigameScript rapierMinigameScript;
@@ -19,10 +21,10 @@ public class RapierAimScript : MonoBehaviour
 
     private void SetNewPosition()
     {
-        Vector2 position = transform.position;
+        Vector2 position = new Vector2();
         position.x = Random.Range(-maxX, maxX);
         position.y = Random.Range(-maxY, maxY);
-        transform.position = position;
+        gameObject.GetComponent<RectTransform>().anchoredPosition = position;
     }
 
     private void AimHit()
@@ -30,21 +32,14 @@ public class RapierAimScript : MonoBehaviour
         rapierMinigameScript.AimHit();
         SetNewPosition();
     }
-    private void Update()
+    
+    private void OnMouseDown()
     {
-        if (Input.touchCount >= 1)
-        {
-            Touch touch = Input.GetTouch(0);
+        AimHit();
+    }
 
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit raycastHit;
-            if (Physics.Raycast(ray.origin, ray.direction, out raycastHit))
-            {
-                if (raycastHit.collider.gameObject == this.gameObject)
-                {
-                    
-                }
-            }
-        }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AimHit();
     }
 }
