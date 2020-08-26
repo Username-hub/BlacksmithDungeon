@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Minigames;
 using TMPro;
 using UnityEngine;
 
-public class RapierMinigameScript : MonoBehaviour
+public class RapierMinigameScript : MinigameBase
 {
     public float GameTimer = 3.0f;
     private float TimeLeft;
@@ -12,6 +13,10 @@ public class RapierMinigameScript : MonoBehaviour
     private void Update()
     {
         TimeLeft -= Time.deltaTime;
+        if (TimeLeft <= 0)
+        {
+            EndGame(pointCount);
+        }
     }
 
     public GameObject rapierAimPrefab;
@@ -19,10 +24,11 @@ public class RapierMinigameScript : MonoBehaviour
 
     public TextMeshProUGUI pointDisplay;
     private int pointCount = 0;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    public override void MinigameStart(MinigameManager gameManager)
     {
+        this.minigameManager = gameManager;
+        pointCount = 0;
         TimeLeft = GameTimer;
         rapierAim = Instantiate(rapierAimPrefab, transform);
         RapierAimScript rapierAimScript = rapierAim.GetComponent<RapierAimScript>();
@@ -34,8 +40,8 @@ public class RapierMinigameScript : MonoBehaviour
         pointCount++;
         pointDisplay.text = pointCount.ToString();
     }
-    private void EndMiniGame()
+    void EndGame(int damage)
     {
-        
+        minigameManager.MinigameEnd(damage);
     }
 }
