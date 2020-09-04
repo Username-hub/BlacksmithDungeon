@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public MinigameManager minigameManager;
     public void AttackEnemy()
     {
-        //minigameManager.StartMinigameManager();
+        minigameManager.StartMinigameManager();
         
     }
 

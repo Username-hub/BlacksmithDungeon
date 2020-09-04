@@ -7,13 +7,17 @@ namespace Minigames
         public GameObject rapierMinigame;
         public MinigameObject rapierObject;
 
+        public GameObject archeryMinigame;
+        public MinigameObject archeryObject;
         public MinigameObject GetRandomMinigameBase()
         {
-            int randNum = Random.Range(1, 2);
+            int randNum = Random.Range(1, 3);
             switch (randNum)
             {
                 case 1:
                     return rapierObject;
+                case 2:
+                    return archeryObject;
                 default:
                     return rapierObject; 
             }
@@ -25,6 +29,8 @@ namespace Minigames
             {
                 case 1:
                     return rapierMinigame;
+                case 2:
+                    return archeryMinigame;
                 default:
                     return rapierMinigame;
             }

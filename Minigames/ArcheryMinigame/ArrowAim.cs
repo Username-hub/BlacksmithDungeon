@@ -8,6 +8,7 @@ namespace Minigames.ArcheryMinigame
 {
     public class ArrowAim : MonoBehaviour
     {
+        public TextMeshProUGUI text;
         private Rigidbody2D _rigidbody2D;
         public float speed = 5.0f;
         private float timeInAim = 0;
@@ -24,6 +25,7 @@ namespace Minigames.ArcheryMinigame
         private void OnTriggerStay2D(Collider2D other)
         {
             timeInAim += Time.deltaTime;
+            text.text = timeInAim.ToString();
         }
 
         public int StopAim()
