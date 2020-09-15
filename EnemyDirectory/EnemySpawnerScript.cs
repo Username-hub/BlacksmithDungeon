@@ -7,14 +7,14 @@ public class EnemySpawnerScript : MonoBehaviour
 {
     public EnemyList enemyList;
     public GameObject enemyObject;
-    
+    public GameManager gameManager;
 
-    public void SpawnEnemy(int minLevel, int maxLevel)
+    public GameObject SpawnEnemy(int minLevel, int maxLevel)
     {
         GameObject enemyInstantiate = Instantiate(enemyObject, transform.position, Quaternion.identity);
         EnemyScript enemyScript = enemyInstantiate.GetComponent<EnemyScript>();
-        enemyScript.InitializeEnemy(enemyList.Slime);
-
+        enemyScript.InitializeEnemy(enemyList.Slime, gameManager);
+        return enemyInstantiate;
 
     }
 }

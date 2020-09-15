@@ -42,7 +42,7 @@ namespace Minigames
         }
         public void MinigameEnd(int damage)
         {
-            
+            GameManager.EndOfHeroAttack(damage);
         }
 
         public void ButtonPressed(int button)

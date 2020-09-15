@@ -42,6 +42,8 @@ public class RapierMinigameScript : MinigameBase
     }
     void EndGame(int damage)
     {
+        Destroy(rapierAim);
         minigameManager.MinigameEnd(damage);
+        gameObject.SetActive(false);
     }
 }
