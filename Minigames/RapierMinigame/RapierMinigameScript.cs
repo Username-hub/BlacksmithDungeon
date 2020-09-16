@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class RapierMinigameScript : MinigameBase
 {
-    public float GameTimer = 3.0f;
     private float TimeLeft;
 
     private void Update()
@@ -29,7 +28,7 @@ public class RapierMinigameScript : MinigameBase
     {
         this.minigameManager = gameManager;
         pointCount = 0;
-        TimeLeft = GameTimer;
+        TimeLeft = gameTimer;
         rapierAim = Instantiate(rapierAimPrefab, transform);
         RapierAimScript rapierAimScript = rapierAim.GetComponent<RapierAimScript>();
         rapierAimScript.rapierMinigameScript = this;

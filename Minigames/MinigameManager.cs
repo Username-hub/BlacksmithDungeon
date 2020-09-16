@@ -8,7 +8,7 @@ namespace Minigames
         public GameManager GameManager;
         public GameObject weaponChoosePanel;
         public MinigameList minigameList;
-        
+        public GameObject timer;
         public Image button1;
         private MinigameObject game1;
         public Image button2;
@@ -39,10 +39,14 @@ namespace Minigames
             gameObject.SetActive(true);
             MinigameBase minigameBase = gameObject.GetComponent<MinigameBase>();
             minigameBase.MinigameStart(this);
+            
+            timer.SetActive(true);
+            timer.GetComponent<TimerScript>().StartTimer(minigameBase.gameTimer);
         }
         public void MinigameEnd(int damage)
         {
             GameManager.EndOfHeroAttack(damage);
+            timer.SetActive(false);
         }
 
         public void ButtonPressed(int button)

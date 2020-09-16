@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         enemyScript.HitByHero(damage);
         if (enemyScript.health <= 0)
         {
+            Destroy(enemyScript.gameObject);
             ContinueRun();
         }
         else
@@ -72,10 +73,20 @@ public class GameManager : MonoBehaviour
             AttackEnemy();
         }
     }
-    
+
+    public BackGroundScript backGroundScript;
     private void ContinueRun()
-    {}
-    
+    {
+        backGroundScript.enabled = true;
+        backGroundScript.StartMove();
+    }
+
+    public void EndOfBackgroundMove()
+    {
+        backGroundScript.enabled = false;
+        StartFight();
+    }
+
     private void EndRun()
     {}
 }

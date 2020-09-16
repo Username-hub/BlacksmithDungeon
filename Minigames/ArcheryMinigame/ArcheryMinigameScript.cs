@@ -7,9 +7,7 @@ using UnityEngine;
 
 public class ArcheryMinigameScript : MinigameBase
 {
-    public float gameTime = 3.0f;
     public TextMeshProUGUI pointCount;
-    private float gameTimer;
 
     public GameObject aimPrefab;
 
@@ -40,7 +38,6 @@ public class ArcheryMinigameScript : MinigameBase
 
     public override void MinigameStart(MinigameManager minigameManager)
     {
-        gameTimer = gameTime;
         aim = Instantiate(aimPrefab, transform);
         aim.transform.SetAsFirstSibling();
         arrowAim = aim.GetComponent<ArrowAim>();
