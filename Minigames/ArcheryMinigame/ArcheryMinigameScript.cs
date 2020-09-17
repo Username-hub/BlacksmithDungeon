@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class ArcheryMinigameScript : MinigameBase
 {
+    public float offsetX = -10;
+    public float offsetY = 10;
     public TextMeshProUGUI pointCount;
 
     public GameObject aimPrefab;
@@ -16,28 +18,29 @@ public class ArcheryMinigameScript : MinigameBase
 
     public GameObject sight;
     // Start is called before the first frame update
-    void Start()
-    {
-        MinigameStart(minigameManager);
-    }
+    private float timeLeft;
 
     // Update is called once per frame
     void Update()
     {
-        gameTimer -= Time.deltaTime;
-        if (gameTimer <= 0)
+        timeLeft -= Time.deltaTime;
+        if (timeLeft <= 0)
         {
             EndGame();
         }
         if(Input.touchCount > 0)
         {
-            sight.transform.position = Input.GetTouch(0).position;
+            Vector2 position = Input.GetTouch(0).position;
+            position.x += offsetX;
+            position.y += offsetY;
+            sight.transform.position = position;
         }
 
     }
 
     public override void MinigameStart(MinigameManager minigameManager)
     {
+        timeLeft = gameTimer;
         aim = Instantiate(aimPrefab, transform);
         aim.transform.SetAsFirstSibling();
         arrowAim = aim.GetComponent<ArrowAim>();
@@ -46,6 +49,9 @@ public class ArcheryMinigameScript : MinigameBase
 
     private void EndGame()
     {
-        
+        int damage = arrowAim.StopAim();
+        Destroy(arrowAim.gameObject);
+        minigameManager.MinigameEnd(damage);
+        gameObject.SetActive(false);
     }
 }

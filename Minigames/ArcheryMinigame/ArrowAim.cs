@@ -10,12 +10,13 @@ namespace Minigames.ArcheryMinigame
     {
         public TextMeshProUGUI text;
         private Rigidbody2D _rigidbody2D;
-        public float speed = 5.0f;
+        public float speed = 10.0f;
         private float timeInAim = 0;
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _rigidbody2D.AddForce(new Vector2(speed,speed), ForceMode2D.Impulse);
+            float impulseForce = Random.Range(0, speed * 2);
+            _rigidbody2D.AddForce(new Vector2(impulseForce,speed * 2 - impulseForce), ForceMode2D.Impulse);
         }
 
         private void Update()
