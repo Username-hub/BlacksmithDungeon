@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartFight();
+        ContinueRun();
     }
 
     // Update is called once per frame
@@ -30,8 +30,6 @@ public class GameManager : MonoBehaviour
     
     private void StartFight()
     {
-        enemy = enemySpawnerScript.SpawnEnemy(1,1);
-        enemyScript = enemy.GetComponent<EnemyScript>();
         AttackEnemy();
     }
     
@@ -44,7 +42,14 @@ public class GameManager : MonoBehaviour
     
     public void EndOfHeroAttack(int damage)
     {
+        mainHero.StartAttack();
         enemyScript.HitByHero(damage);
+        
+        
+    }
+
+    public void EndOfHeroAnimation()
+    {
         if (enemyScript.health <= 0)
         {
             Destroy(enemyScript.gameObject);
@@ -54,7 +59,6 @@ public class GameManager : MonoBehaviour
         {
             StartEnemyAttack();
         }
-        
     }
 
     private void StartEnemyAttack()
@@ -77,8 +81,12 @@ public class GameManager : MonoBehaviour
     public BackGroundScript backGroundScript;
     private void ContinueRun()
     {
+        //Spawn enemy
+        enemy = enemySpawnerScript.SpawnEnemy(1,1);
+        enemyScript = enemy.GetComponent<EnemyScript>();
+        //Move enemy and wall
         backGroundScript.enabled = true;
-        backGroundScript.StartMove();
+        backGroundScript.StartMove(enemy.transform);
     }
 
     public void EndOfBackgroundMove()
