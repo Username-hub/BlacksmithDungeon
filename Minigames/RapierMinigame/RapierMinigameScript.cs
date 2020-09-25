@@ -9,7 +9,7 @@ public class RapierMinigameScript : MinigameBase
 {
     private float TimeLeft;
 
-    private void Update()
+    private void Update() 
     {
         TimeLeft -= Time.deltaTime;
         if (TimeLeft <= 0)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,11 +26,12 @@ namespace Minigames
 
         private void StartButtons()
         {
-            game1 = minigameList.GetRandomMinigameBase();
+            List<MinigameObject> minigameBases = minigameList.Get3RandomMinigameBase();
+            game1 = minigameBases[0];
             button1.sprite = game1.WeaponSprite;
-            game2 = minigameList.GetRandomMinigameBase();
+            game2 = minigameBases[1];
             button2.sprite = game2.WeaponSprite;
-            game3 = minigameList.GetRandomMinigameBase();
+            game3 = minigameBases[2];
             button3.sprite = game3.WeaponSprite;
         }
         
