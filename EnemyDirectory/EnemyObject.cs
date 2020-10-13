@@ -10,4 +10,5 @@ public class EnemyObject : ScriptableObject
     public int health;
     public int damage;
     public int reward;
+    public int rewardXP;
 }

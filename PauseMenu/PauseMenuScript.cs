@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-    public GameObject gameManager;
-
+    public GameObject gameManagerObj;
     public void PauseCalled()
     {
+        Time.timeScale = 0;
         gameObject.SetActive(true);
     }
     // Start is called before the first frame update
     public void ResumeButtonPressed()
     {
-        gameManager.SetActive(true);
+        Time.timeScale = 1;
+        gameManagerObj.SetActive(true);
         gameObject.transform.parent.gameObject.SetActive(false);
     }
 
@@ -25,6 +26,8 @@ public class PauseMenuScript : MonoBehaviour
 
     public void QuitButtonPressed()
     {
-        SceneManager.LoadScene("MainMenu");
+        gameManagerObj.SetActive(true);
+        Time.timeScale = 1;
+        gameManagerObj.GetComponent<GameManager>().EndRun();
     }
 }

@@ -1,7 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Minigames;
+using Progression;
+using SaveLoadSystem;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.WSA;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +17,18 @@ public class GameManager : MonoBehaviour
     private GameObject enemy;
 
     private EnemyScript enemyScript;
+
+    private int gold;
+    private int xP;
+    private int lvl;
     // Start is called before the first frame update
     void Start()
     {
+        GameSaveData loadedData = SaveSystem.LoadProgress();
+        gold = loadedData.gold;
+        xP = loadedData.XP;
+        lvl = loadedData.lvl;
+        UpdateGoldCount();
         ContinueRun();
     }
 
@@ -52,7 +66,10 @@ public class GameManager : MonoBehaviour
     {
         if (enemyScript.health <= 0)
         {
+            gold += enemyScript.reward;
+            xP += enemyScript.rewardXP;
             Destroy(enemyScript.gameObject);
+            UpdateGoldCount();
             ContinueRun();
         }
         else
@@ -95,6 +112,16 @@ public class GameManager : MonoBehaviour
         StartFight();
     }
 
-    private void EndRun()
-    {}
+    public void EndRun()
+    {
+        MainProgressionsScript.SaveRunProgress(gold, xP, lvl);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public TextMeshProUGUI goldCount;
+
+    private void UpdateGoldCount()
+    {
+        goldCount.text = gold.ToString();
+    }
 }

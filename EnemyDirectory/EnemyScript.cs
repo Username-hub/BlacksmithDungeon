@@ -12,7 +12,8 @@ public class EnemyScript : MonoBehaviour
     public int health;
     private int damageAttack;
     private string enemyName;
-    private int reward;
+    public int reward;
+    public int rewardXP;
     public Image healthBar;
     private GameManager gameManager;
 
@@ -25,6 +26,7 @@ public class EnemyScript : MonoBehaviour
         health = enemyObject.health;
         damageAttack = enemyObject.damage;
         reward = enemyObject.reward;
+        rewardXP = enemyObject.rewardXP;
         enemyName = enemyObject.enemyName;
         gameObject.name = enemyName;
     }
