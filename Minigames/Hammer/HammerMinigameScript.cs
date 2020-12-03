@@ -65,6 +65,6 @@ public class HammerMinigameScript : MinigameBase
     private void EndGame()
     {
         minigameManager.MinigameEnd((int) currentPower);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

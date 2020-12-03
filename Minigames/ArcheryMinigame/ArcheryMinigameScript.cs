@@ -41,6 +41,7 @@ public class ArcheryMinigameScript : MinigameBase
     public override void MinigameStart(MinigameManager minigameManager)
     {
         timeLeft = gameTimer;
+        this.minigameManager = minigameManager;
         aim = Instantiate(aimPrefab, transform);
         aim.transform.SetAsFirstSibling();
         arrowAim = aim.GetComponent<ArrowAim>();
@@ -50,8 +51,7 @@ public class ArcheryMinigameScript : MinigameBase
     private void EndGame()
     {
         int damage = arrowAim.StopAim();
-        Destroy(arrowAim.gameObject);
         minigameManager.MinigameEnd(damage);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

@@ -6,7 +6,6 @@ using SaveLoadSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.WSA;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,7 +26,7 @@ public class GameManager : MonoBehaviour
         GameSaveData loadedData = SaveSystem.LoadProgress();
         gold = loadedData.gold;
         xP = loadedData.XP;
-        lvl = loadedData.lvl;
+        lvl = loadedData.lvl;  
         UpdateGoldCount();
         ContinueRun();
     }

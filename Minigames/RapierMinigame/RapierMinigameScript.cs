@@ -43,6 +43,6 @@ public class RapierMinigameScript : MinigameBase
     {
         Destroy(rapierAim);
         minigameManager.MinigameEnd(damage);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
