@@ -43,10 +43,6 @@ namespace Minigames
         public void StartMinigame(GameObject gameObjectPrefab)
         {
             weaponChoosePanel.SetActive(false);
-            /*gameObject.SetActive(true);
-            MinigameBase minigameBase = gameObject.GetComponent<MinigameBase>();
-            minigameBase.MinigameStart(this);
-            */
             GameObject spawnGame = Instantiate(gameObjectPrefab, gameObject.transform);
             MinigameBase minigameBase = spawnGame.GetComponent<MinigameBase>();
             minigameBase.MinigameStart(this);
@@ -64,16 +60,16 @@ namespace Minigames
             switch (button)
             {
                 case 1:
-                    StartMinigame(minigameList.GetMinigamePanelById(game1.minigameId));
+                    StartMinigame(minigameList.GetMinigamePrefabById(game1.minigameId));
                     break;
                 case 2:
-                    StartMinigame(minigameList.GetMinigamePanelById(game2.minigameId));
+                    StartMinigame(minigameList.GetMinigamePrefabById(game2.minigameId));
                     break;
                 case 3:
-                    StartMinigame(minigameList.GetMinigamePanelById(game3.minigameId));
+                    StartMinigame(minigameList.GetMinigamePrefabById(game3.minigameId));
                     break;
                 default:
-                    StartMinigame(minigameList.GetMinigamePanelById(game1.minigameId));
+                    StartMinigame(minigameList.GetMinigamePrefabById(game1.minigameId));
                     break;
             }
         }

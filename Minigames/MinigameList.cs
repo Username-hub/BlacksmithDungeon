@@ -15,7 +15,8 @@ namespace Minigames
             List<int> numbersToChose =new List<int>();
             for (int i = 0; i < gameObjectDataList.Length; i++)
             {
-                numbersToChose.Add(i);
+                if(gameObjectDataList[i].status == Status.Have)
+                    numbersToChose.Add(i); 
             }
 
             for (int i = 0; i < 3; i++)
@@ -28,7 +29,7 @@ namespace Minigames
             }
             return result;
         }
-        public GameObject GetMinigamePanelById(int id)
+        public GameObject GetMinigamePrefabById(int id)
         {
             return gameList[id - 1];
         }

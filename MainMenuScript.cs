@@ -12,6 +12,10 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void LoadShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
     public void QuitGame()
     {
         
