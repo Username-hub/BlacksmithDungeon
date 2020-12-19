@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using Minigames;
 using SaveLoadSystem;
 using Shop;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopPanelScript : MonoBehaviour
 {
     
     public Image minigameIcon;
-    public String description;
+    public TextMeshProUGUI description;
     public int price;
+    public TextMeshProUGUI priceText;
     public Status status;
     public Button buyButton;
     public GameObject soldPanel;
@@ -23,8 +26,9 @@ public class ShopPanelScript : MonoBehaviour
     {
         this.shopController = shopController;
         this.minigameIcon.sprite = minigameObject.WeaponSprite;
-        this.description = minigameObject.description;
+        this.description.text = minigameObject.description;
         this.price = minigameObject.price;
+        this.priceText.text = "Price: " + price.ToString();
         this.status = minigameObject.status;
         this.minigameObjectForMod = minigameObject;
         if (this.status == Status.Have)
@@ -35,8 +39,17 @@ public class ShopPanelScript : MonoBehaviour
             buyButton.interactable = true;
         }
         
-
     }
 
-    
+    public void PressedBuyButton()
+    {
+        if (price < shopController.GetGold())
+        {
+            soldPanel.SetActive(true);
+            shopController.itemBouth(price);
+            minigameObjectForMod.status = Status.Have;
+        }
+    }
+
+
 }
