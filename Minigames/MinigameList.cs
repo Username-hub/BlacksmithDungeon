@@ -21,7 +21,7 @@ namespace Minigames
 
             for (int i = 0; i < 3; i++)
             {
-                int num = numbersToChose[Random.Range(0, numbersToChose.Count - 1)];
+                int num = numbersToChose[Random.Range(0, numbersToChose.Count)];
                 
                 result.Add(gameObjectDataList[num]);
 

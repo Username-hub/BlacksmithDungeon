@@ -13,6 +13,7 @@ namespace Minigames
     [CreateAssetMenu(fileName = "FILENAME", menuName = "MinigameObject", order = 0)]
     public class MinigameObject : ScriptableObject
     {
+        public String name;
         public Status status;
         public int minigameId;
         public Sprite WeaponSprite;

@@ -44,6 +44,7 @@ namespace Minigames
         {
             weaponChoosePanel.SetActive(false);
             GameObject spawnGame = Instantiate(gameObjectPrefab, gameObject.transform);
+            spawnGame.transform.SetSiblingIndex(1);
             MinigameBase minigameBase = spawnGame.GetComponent<MinigameBase>();
             minigameBase.MinigameStart(this);
             timer.SetActive(true);

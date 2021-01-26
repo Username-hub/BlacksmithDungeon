@@ -39,7 +39,8 @@ namespace Minigames.CrossbowMinigame
                 }
             }
 
-            if (crossBow.transform.eulerAngles.z >= 180.0f || crossBow.transform.eulerAngles.z <= 0) direction *= -1;
+            if (crossBow.transform.eulerAngles.z >= 180.0f) direction = -1;
+            if (crossBow.transform.eulerAngles.z <= 0) direction = 1;
             
             crossBow.transform.eulerAngles =new Vector3(0, 0, crossBow.transform.eulerAngles.z + (direction * rotationSpeed * Time.deltaTime));
         }
